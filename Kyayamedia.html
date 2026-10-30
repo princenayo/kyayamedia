@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Kyayamedia</title>
+<style>
+:root{--bg:#faf8f5;--surface:#fff;--text:#1c1a17;--muted:#6b665e;--line:#e6e0d6;--accent:#d9480f;--accent-text:#fff;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#14120f;--surface:#1e1b17;--text:#f3efe8;--muted:#a39d92;--line:#33302a;--accent:#ff7a3d;--accent-text:#14120f}}
+:root[data-theme="dark"]{--bg:#14120f;--surface:#1e1b17;--text:#f3efe8;--muted:#a39d92;--line:#33302a;--accent:#ff7a3d;--accent-text:#14120f}
+html{scroll-padding-top:env(safe-area-inset-top,0px);scroll-behavior:smooth}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font-family:Georgia,"Times New Roman",serif;line-height:1.55}
+.wrap{max-width:1040px;margin:0 auto;padding:0 20px}
+header{border-bottom:1px solid var(--line);background:var(--bg);position:sticky;top:env(safe-area-inset-top,0px);z-index:5}
+.bar{display:flex;align-items:center;justify-content:space-between;height:60px}
+.logo{font-family:system-ui,sans-serif;font-weight:800;font-size:1.3rem;letter-spacing:-.02em;color:var(--text);text-decoration:none}
+.logo span{color:var(--accent)}
+nav a{font-family:system-ui,sans-serif;font-size:.9rem;color:var(--muted);text-decoration:none;margin-left:18px}
+nav a:hover{color:var(--accent)}
+.hero{padding:64px 0 48px}
+.hero h1{font-size:clamp(2rem,6vw,3.6rem);line-height:1.08;margin:0 0 16px;letter-spacing:-.02em;max-width:16ch}
+.hero p{color:var(--muted);font-size:1.1rem;max-width:52ch;margin:0 0 24px}
+.btn{display:inline-block;font-family:system-ui,sans-serif;font-weight:600;background:var(--accent);color:var(--accent-text);padding:12px 22px;border-radius:8px;text-decoration:none;border:0;cursor:pointer;font-size:.95rem}
+h2{font-size:1.7rem;margin:0 0 6px;letter-spacing:-.01em}
+.sub{color:var(--muted);margin:0 0 24px}
+section{padding:40px 0;border-top:1px solid var(--line)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:16px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:20px;display:flex;flex-direction:column}
+.card h3{margin:10px 0 6px;font-size:1.15rem}
+.card p{margin:0 0 14px;color:var(--muted);font-size:.95rem;flex:1}
+.dot{width:40px;height:40px;border-radius:10px;display:grid;place-items:center;font-family:system-ui,sans-serif;font-weight:800;color:#fff}
+.card a.v{align-self:flex-start;font-family:system-ui,sans-serif;border:1px solid var(--line);color:var(--text);padding:8px 14px;border-radius:6px;font-size:.85rem;text-decoration:none}
+.card a.v:hover{border-color:var(--accent);color:var(--accent)}
+form{display:grid;gap:12px;max-width:520px}
+input,select,textarea{font:inherit;font-family:system-ui,sans-serif;padding:11px;border-radius:8px;border:1px solid var(--line);background:var(--surface);color:var(--text);width:100%}
+.float{overflow:hidden;padding:8px 0 40px}
+.track{display:flex;width:max-content;animation:drift 40s linear infinite}
+.float:hover .track{animation-play-state:paused}
+.slot{position:relative;flex:none;width:260px;height:170px;margin-right:16px;border-radius:12px;overflow:hidden;border:1px solid var(--line);background:linear-gradient(135deg,var(--surface),var(--line));display:grid;place-items:center;color:var(--muted);font-family:system-ui,sans-serif;font-size:.85rem}
+.slot img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+@keyframes drift{to{transform:translateX(-50%)}}
+@media (prefers-reduced-motion:reduce){.track{animation:none}.float{overflow-x:auto}}
+footer{border-top:1px solid var(--line);padding:28px 0;color:var(--muted);font-family:system-ui,sans-serif;font-size:.85rem}
+#ok{color:var(--accent);font-family:system-ui,sans-serif;display:none}
+</style>
+</head>
+<body>
+<header><div class="wrap bar">
+<a class="logo" href="#top">kyaya<span>media</span></a>
+<nav><a href="#agencies">Outlets</a><a href="#contact">Contact</a></nav>
+</div></header>
+
+<main id="top">
+<div class="wrap hero">
+<h1>One home for your media voices.</h1>
+<p>Kyayamedia brings your favourite Nigerian and Anambra news outlets together in a single place—one tap to the stories that matter.</p>
+<a class="btn" href="#agencies">Explore our outlets</a>
+</div>
+
+<div class="float" aria-label="Featured images"><div class="track" id="track"></div></div>
+
+<section id="agencies"><div class="wrap">
+<h2>Our media outlets</h2>
+<p class="sub">Your favourite news sources.</p>
+<div class="grid" id="agGrid"></div>
+</div></section>
+
+<section id="contact"><div class="wrap">
+<h2>Get in touch</h2>
+<p class="sub">Send us a message, a tip or a partnership enquiry.</p>
+<form id="f">
+<input name="n" placeholder="Your name" required>
+<input name="e" type="email" placeholder="Email address" required>
+<select id="sel"></select>
+<textarea name="m" rows="4" placeholder="How can we help?" required></textarea>
+<button class="btn" type="submit">Send message</button>
+<span id="ok">Thanks—your message has been received.</span>
+</form>
+</div></section>
+</main>
+
+<footer><div class="wrap">© 2026 Kyayamedia. All outlets belong to their respective owners.</div></footer>
+
+<script>
+var A=[
+{n:"Arise TV",i:"A",c:"#c2410c",u:"https://www.arise.tv/",d:"Round-the-clock news, business and current affairs from Arise."},
+{n:"Channels TV",i:"C",c:"#0369a1",u:"https://www.channelstv.com/",d:"Nigeria’s breaking news, politics, business and live television."},
+{n:"News Now – Anambra",i:"N",c:"#7c3aed",u:"https://www.newsnow.com/ng/Nigeria/South+East/Anambra",d:"A running feed of Anambra headlines gathered from across the web."},
+{n:"Government of Anambra",i:"G",c:"#15803d",u:"https://anambrastate.gov.ng/newsroom/",d:"Official statements and updates from the Anambra State newsroom."},
+{n:"Anambra Daily",i:"D",c:"#be185d",u:"https://www.anambradaily.com/",d:"Daily news and stories focused on Anambra State."},
+{n:"Punch – Anambra",i:"P",c:"#a16207",u:"https://punchng.com/tags/anambra-state/",d:"Punch’s coverage of Anambra State, all in one tag page."}
+];
+var tr=document.getElementById("track");
+for(var r=0;r<2;r++)for(var i=1;i<=6;i++){var s=document.createElement("div");s.className="slot";s.innerHTML='<span>Image space '+i+'</span><img src="image/space'+i+'.jpg" alt="">';tr.appendChild(s);}
+tr.querySelectorAll("img").forEach(function(m){m.onerror=function(){m.style.display="none"}});
+var g=document.getElementById("agGrid"),sel=document.getElementById("sel");
+sel.innerHTML='<option value="">General enquiry</option>';
+A.forEach(function(x){
+ var d=document.createElement("div");d.className="card";
+ d.innerHTML='<div class="dot" style="background:'+x.c+'">'+x.i+'</div><h3>'+x.n+'</h3><p>'+x.d+'</p><a class="v" href="'+x.u+'" target="_blank" rel="noopener noreferrer">Visit site →</a>';
+ g.appendChild(d);
+ sel.innerHTML+='<option>'+x.n+'</option>';
+});
+document.getElementById("f").addEventListener("submit",function(e){e.preventDefault();document.getElementById("ok").style.display="inline";this.reset()});
+</script>
+</body>
+</html>
